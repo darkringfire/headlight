@@ -13,6 +13,7 @@
 .include "eseg.inc"
 
 ; = FLASH =========================================
+; - Code Section ----------------------------------
 .cseg
 	rjmp	reset
 .include "vectors.inc"
@@ -23,6 +24,7 @@
 .include "sub.inc"
 ; ================= RESET ===========================
 reset:
+; Hardware reset
 .include "hwinit.inc"
 	
 	; USART
@@ -35,6 +37,7 @@ reset:
 	ldi	R16, 1<<USBS0 | 0b11<<UCSZ00
 
 init:
+; Software reset
         ; variables
 	clr	R16
 	SetState	LowState, R16, R16
