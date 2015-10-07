@@ -251,6 +251,7 @@ DenyDRL:
 	lds	R16, DenyDRLCounter
 	lds	R17, InState
 
+	; check allow condition
 	sbrc	R17, HeadF
 	rjmp	DenyDRL_allow
 	sbrc	R17, IgnF
@@ -264,12 +265,13 @@ DenyDRL_allow:
 	clr	R16
 	rjmp	DenyDRL_store
 DenyDRL_park:
+	; check park state
 	sbrs	R17, ParkF
 	rjmp	DenyDRL_check_delay
-DenyDRL_check_cnt:
+
 	tst	R16
 	brne	DenyDRL_dec
-	ret
+	ret	; overtime in Park-ON
 DenyDRL_check_delay:
 	tst	R16
 	breq	DenyDRL_reset
