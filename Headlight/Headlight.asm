@@ -71,7 +71,7 @@ init:
 	PreInitActions
 	InitAction	GetInState, 1
 	InitAction	DenyDRL, 10
-	InitAction	LightState, DebounceDelay
+	InitAction	LightState, 1
 	InitAction	LightDelay, 1
 
         ; Enable interrupts
