@@ -69,10 +69,10 @@ init:
 
 	; Action Counters
 	PreInitActions
-	InitAction	GetInState, 1
-	InitAction	DenyDRL, 10
-	InitAction	LightState, DebounceDelay
-	InitAction	LightDelay, 1
+	InitAction	M_GetInState, GetInState, 1
+	InitAction	M_DenyDRL, DenyDRL, 10
+	InitAction	M_LightState, LightState, DebounceDelay
+	InitAction	M_LightDelay, LightDelay, 1
 
         ; Enable interrupts
         sei

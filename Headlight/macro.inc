@@ -115,9 +115,14 @@
 	.if	AddedActions > ActionsNum
 		.error "Too many actions added!"
 	.endif
-	ldi	XL, Low(@0)
-	ldi	XH, High(@0)
-	ldi	YL, Low(@1)
-	ldi	YH, High(@1)
+	;.equ	Action_@0_Sub = @1
+	.equ	Action_@0_Addr = Actions + (ActionsNum - AddedActions) * 6
+	.equ	Action_@0_Delay = Action_@0_Addr + 2
+	.equ	Action_@0_Counter = Action_@0_Delay + 2
+
+	ldi	XL, Low(@1)
+	ldi	XH, High(@1)
+	ldi	YL, Low(@2)
+	ldi	YH, High(@2)
 	rcall	InitAction_sub
 .endm
