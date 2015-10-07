@@ -161,6 +161,13 @@ get_state_end:
 
 ; ============== Light state ================
 LightState:
+	; R16 - Current state
+	; R17 - Previous state
+	; R18 - Low Level
+	; R19 - High Level
+	; R20 - Swith speed
+	; R21 - Blink Indicator Counter
+	clr	R21
 	lds	R16, InState
 	lds	R17, PrevInState
 	cp	R16, R17
@@ -183,8 +190,10 @@ State_select:
 	rjmp	light_off
 	
 	; DRL
-	clr	R18
+	ResetActionCounter M_BlinkIndDRL, Z, R18, R19
+	ldi	R21, BlinkIndDRLNum
 
+	clr	R18
 	clr	R19
 	sbrs	R16, DenyDRLF
 	lds	R19, DRLLevel
@@ -230,10 +239,14 @@ flash_on:
 	
 light_set:
 	sts	PrevInState, R16
+	sts	BlinkIndDRLCounter, R21
 	SetState	LowState, R18, R20
 	SetState	HighState, R19, R20
+
 	cpi	R19, 0xFF
-	breq HighInd_on
+	breq	HighInd_on
+	sbrc	R21, 0
+	rjmp	HighInd_on
 	cbp	Ind
 	rjmp	Check_fog
 HighInd_on:

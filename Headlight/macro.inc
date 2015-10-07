@@ -130,20 +130,20 @@
 
 ; ============ Reset Action Counter ===============
 .macro	ResetActionCounter
-	ldi	ZL, Low(Action_@0_Delay)
-	ldi	ZH, High(Action_@0_Delay)
-	ld	R16, Z+
-	ld	R17, Z+
-	st	Z+, R16
-	st	Z+, R17
+	ldi	@1L, Low(Action_@0_Delay)
+	ldi	@1H, High(Action_@0_Delay)
+	ld	@2, Z+
+	ld	@3, Z+
+	st	Z+, @2
+	st	Z+, @3
 .endm
 
 ; =========== Force Action ==========
 .macro	ForceAction
-	ldi	ZL, Low(Action_@0_Counter)
-	ldi	ZH, High(Action_@0_Counter)
-	clr	R16
-	st	Z+, R16
-	st	Z+, R17
+	ldi	@1L, Low(Action_@0_Counter)
+	ldi	@1H, High(Action_@0_Counter)
+	clr	@2
+	st	Z+, @2
+	st	Z+, @2
 .endm
 

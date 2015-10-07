@@ -11,7 +11,8 @@
 .equ	LightDelayOff	= 255 ; ms
 .equ	DebounceDelay	= 10 ; ms
 .equ	DenyDRLDelay	= 50 ; *10 ms
-.equ	ActionsNum	= 4 ; stackable actions
+.equ	ActionsNum	= 5 ; stackable actions
+.equ	BlinkIndDRLNum	= 5 * 2 - 1 ; Num * 2 - 1
 
 ; - Flags ----------------------
 ;	Input state

@@ -54,6 +54,7 @@ init:
 
 	clr	R16
 	sts	DenyDRLCounter, R16
+	sts	BlinkIndDRLCounter, R16
 
 	;---
 	.warning "TODO: read time from EEPROM"
@@ -71,6 +72,7 @@ init:
 	PreInitActions
 	InitAction	M_GetInState, GetInState, 1
 	InitAction	M_DenyDRL, DenyDRL, 10
+	InitAction	M_BlinkIndDRL, BlinkIndDRL, 250
 	InitAction	M_LightState, LightState, 1
 	InitAction	M_LightDelay, LightDelay, 1
 
@@ -83,3 +85,16 @@ start:
 
 	rjmp    start
 
+; ========== Blink Ind DRL ================
+BlinkIndDRL:
+	lds	R16, BlinkIndDRLCounter
+	tst	R16
+	breq	Blink_end
+	dec	R16
+	sbrc	R16, 0
+	sbp	Ind
+	sbrs	R16, 0
+	cbp	Ind
+	sts	BlinkIndDRLCounter, R16
+Blink_end:
+	ret

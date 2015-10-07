@@ -13,7 +13,8 @@ PrevInState:	.byte 1
 InStateCounter:	.byte 1
 
 LightDelayCounter:	.byte 1
-DenyDRLCounter:	.byte 1
+DenyDRLCounter:		.byte 1
+BlinkIndDRLCounter:	.byte 1
 
 ActionFlags:	.byte 1
 
