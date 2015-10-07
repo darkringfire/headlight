@@ -109,6 +109,7 @@
 	.set	AddedActions = 0
 	rcall	PreInitActions_sub
 .endm
+
 ; ========== Init stackable action ==================
 .macro	InitAction
 	.set	AddedActions = AddedActions + 1
@@ -126,3 +127,23 @@
 	ldi	YH, High(@2)
 	rcall	InitAction_sub
 .endm
+
+; ============ Reset Action Counter ===============
+.macro	ResetActionCounter
+	ldi	ZL, Low(Action_@0_Delay)
+	ldi	ZH, High(Action_@0_Delay)
+	ld	R16, Z+
+	ld	R17, Z+
+	st	Z+, R16
+	st	Z+, R17
+.endm
+
+; =========== Force Action ==========
+.macro	ForceAction
+	ldi	ZL, Low(Action_@0_Counter)
+	ldi	ZH, High(Action_@0_Counter)
+	clr	R16
+	st	Z+, R16
+	st	Z+, R17
+.endm
+
