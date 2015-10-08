@@ -56,17 +56,26 @@ init:
 	sts	DenyDRLCounter, R16
 	sts	BlinkIndDRLCounter, R16
 
-	;---
-	.warning "TODO: read time from EEPROM"
-	ldi	R16, 5
+	;--- Load Settings from EEPROM
+	ldi	ZL, Low(EEP_DrlLevel)
+	ldi	ZH, High(EEP_DrlLevel)
+	rcall	EEPROM_read
 	sts	DRLLevel, R16
-	ldi	R16, 200
+
+	ldi	ZL, Low(EEP_DRLTime)
+	ldi	ZH, High(EEP_DRLTime)
+	rcall	EEPROM_read
 	sts	DRLTime, R16
-	ldi	R16, 100
+
+	ldi	ZL, Low(EEP_HeadTime)
+	ldi	ZH, High(EEP_HeadTime)
+	rcall	EEPROM_read
 	sts	HeadTime, R16
-	ldi	R16, 5
+
+	ldi	ZL, Low(EEP_FlashTime)
+	ldi	ZH, High(EEP_FlashTime)
+	rcall	EEPROM_read
 	sts	FlashTime, R16
-	;---
 
 	; Action Counters
 	PreInitActions

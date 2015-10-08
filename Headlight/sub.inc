@@ -1,3 +1,17 @@
+; ============ EEPROM Read ===============
+EEPROM_read:
+	; Wait for completion of previous write
+	sbic EECR,EEPE
+	rjmp EEPROM_read
+	; Set up address (r18:r17) in address register
+	out EEARH, ZH
+	out EEARL, ZL
+	; Start eeprom read by writing EERE
+	sbi EECR,EERE
+	; Read data from Data Register
+	in r16,EEDR
+	ret
+
 ; =========== Pre Init Actions ================
 PreInitActions_sub:
 	ldi	R16, ActionsNum * 6
