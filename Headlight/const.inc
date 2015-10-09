@@ -1,12 +1,16 @@
 ; - Constants ---------------------
-.equ    Freq		= 16 ; MHz
-.equ    TimeOnMin	= 10 ; ms - time (Off -> Full On) if Delay = 1
-.equ    LightStep	= 2
+.equ    Freq		= 1 ; MHz
+.equ    TimeOnMin	= 50 ; ms - time (Off -> Full On) if Delay = 1
+.equ    LightStep	= 4
 .equ    LightTimer	= Freq * 1000  * LightStep * TimeOnMin / 255
 .equ	Timer1ms	= Freq * 1000
 .equ    CtlSize		= 3 ; Size of PWM-control data
 .equ    CtlNum		= 2 ; Number of PWMs
-.equ	PWM_Prescale	= 0b010 ; 010 - /8, 011 - /64
+.if	Freq < 8
+	.equ	PWM_Prescale	= 0b001 ; 001 - /1, 010 - /8, 011 - /64, 100 - 256
+.else
+	.equ	PWM_Prescale	= 0b010 ; 001 - /1, 010 - /8, 011 - /64, 100 - 256
+.endif
 .equ	LightDelayOn	= 255 ; ms
 .equ	LightDelayOff	= 255 ; ms
 .equ	DebounceDelay	= 10 ; ms
