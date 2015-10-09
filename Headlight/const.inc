@@ -11,12 +11,15 @@
 .else
 	.equ	PWM_Prescale	= 0b010 ; 001 - /1, 010 - /8, 011 - /64, 100 - 256
 .endif
-.equ	LightDelayOn	= 255 ; ms
+;---
+.warning "setup Relay ON time"
+.equ	LightDelayOn	= 10 ; ms
+;---
 .equ	LightDelayOff	= 255 ; ms
 .equ	DebounceDelay	= 10 ; ms
 .equ	DenyDRLDelay	= 50 ; *10 ms
 .equ	ActionsNum	= 5 ; stackable actions
-.equ	BlinkIndDRLNum	= 5 * 2 - 1 ; Num * 2 - 1
+.equ	BlinkIndDRLNum	= 5 * 2 ; Num * 2
 
 ; - Flags ----------------------
 ;	Input state

@@ -204,15 +204,16 @@ State_select:
 	rjmp	light_off
 	
 	; DRL
-	ResetActionCounter M_BlinkIndDRL, Z, R18, R19
-	ldi	R21, BlinkIndDRLNum
-
 	clr	R18
 	clr	R19
-	sbrs	R16, DenyDRLF
-	lds	R19, DRLLevel
 
+	sbrc	R16, DenyDRLF
+	rjmp	DRL_skip
+	ResetActionCounter M_BlinkIndDRL, Z, R19, R20
+	lds	R19, DRLLevel
 	lds	R20, DRLTime
+	ldi	R21, BlinkIndDRLNum
+DRL_skip:
 	rjmp	prev_flash_check
 
 head_on:
