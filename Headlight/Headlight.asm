@@ -26,7 +26,7 @@
 reset:
 ; Hardware reset
 .include "hwinit.inc"
-	
+	/*
 	; USART
 	ldi	R16, High(8)
 	uout	UBRR0H, R16
@@ -35,7 +35,7 @@ reset:
 	ldi	R16, 1<<TXEN0
 	uout	UCSR0B, R16
 	ldi	R16, 1<<USBS0 | 0b11<<UCSZ00
-
+*/
 init:
 ; Software reset
         ; variables

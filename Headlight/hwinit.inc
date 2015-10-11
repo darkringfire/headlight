@@ -27,8 +27,6 @@
         uout    TCCR0A, R16
         ldi     R16, 0<<WGM02 | PWM_Prescale<<CS00
         uout    TCCR0B, R16
-        ldi     R16, 0<<OCIE0B | 0<<OCIE0A | 0<<TOIE0
-        uout    TIMSK0, R16
 
         ; Timer1 setup
         ldi     R16, high(LightTimer)
@@ -45,5 +43,13 @@
         uout    TCCR1A, R16
         ldi     R16, 0b00<<WGM12 | 0b001<<CS10
         uout    TCCR1B, R16
-        ldi     R16, 1<<OCIE1B | 1<<OCIE1A
+#ifdef _M328PDEF_INC_
+        ldi     R16, 0<<OCIE0B | 0<<OCIE0A | 0<<TOIE0
+        uout    TIMSK0, R16
+        ldi     R16, 1<<OCIE1B | 1<<OCIE1A | 0<<TOIE1
         uout    TIMSK1, R16
+#endif
+#ifdef _TN2313DEF_INC_
+        ldi     R16, 0<<OCIE0B | 0<<OCIE0A | 0<<TOIE0 |  1<<OCIE1B | 1<<OCIE1A | 0<<TOIE1
+        uout    TIMSK, R16
+#endif

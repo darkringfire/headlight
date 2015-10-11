@@ -39,25 +39,43 @@
 .equ	NeedLightF	= 2
 .equ	AllowLightF	= 3
 
-; - In ports ----------------------
-DefInPort Low,   D, 2
-DefInPort Flash, D, 3
-DefInPort Head,  C, 3
-DefInPort Park,  C, 2
-DefInPort AT,    C, 1
-DefInPort Ign,   C, 0
+#ifdef _M328PDEF_INC_
+	; - In ports ----------------------
+	DefInPort Low,   D, 2
+	DefInPort Flash, D, 3
+	DefInPort Head,  C, 3
+	DefInPort Park,  C, 2
+	DefInPort AT,    C, 1
+	DefInPort Ign,   C, 0
 
-; - Out ports ---------------------
+	; - Out ports ---------------------
+	DefOCR Low, OCR0A
+	DefOCR High, OCR0B
 
-.equ    PWM_DDR		= DDRD
-.equ	PWM_Port	= PORTD
+	DefOutPort Low,  D, 5
+	DefOutPort High, D, 6
 
-DefOCR Low, OCR0A
-DefOCR High, OCR0B
+	DefOutPort Lamps, D, 7
+	DefOutPort Fog,   B, 0
+	DefOutPort Ind,   B, 5 ; 5 - on board, 1 - release
+#endif
+#ifdef _TN2313DEF_INC_
+	; - In ports ----------------------
+	DefInPort Low,   D, 3
+	DefInPort Flash, D, 2
+	DefInPort Head,  D, 0
+	DefInPort Park,  D, 1
+	DefInPort AT,    A, 0
+	DefInPort Ign,   A, 1
 
-DefOutPort Low,  D, 5
-DefOutPort High, D, 6
+	; - Out ports ---------------------
+	DefOCR Low, OCR0A
+	DefOCR High, OCR0B
 
-DefOutPort Lamps, D, 7
-DefOutPort Fog,   B, 0
-DefOutPort Ind,   B, 5 ; 5 - on board, 1 - release
+	DefOutPort Low,	  B, 2
+	DefOutPort High,  D, 5
+
+	DefOutPort Lamps, B, 1
+	DefOutPort Fog,   B, 0
+	DefOutPort Ind,   B, 3
+#endif

@@ -4,7 +4,9 @@ EEPROM_read:
 	sbic EECR,EEPE
 	rjmp EEPROM_read
 	; Set up address (r18:r17) in address register
+	.ifdef EEARH
 	out EEARH, ZH
+	.endif
 	out EEARL, ZL
 	; Start eeprom read by writing EERE
 	sbi EECR,EERE
