@@ -1,5 +1,5 @@
 ; - Constants ---------------------
-.equ    Freq		= 1 ; MHz
+.equ    Freq										= 1 ; MHz
 .equ    TimeOnMin	= 50 ; ms - time (Off -> Full On) if Delay = 1
 .equ    LightStep	= 4
 .equ    LightTimer	= Freq * 1000  * LightStep * TimeOnMin / 255
@@ -31,7 +31,7 @@
 .equ	IgnF	 = 5
 .equ	DenyDRLF = 6
 ;	Output state
-.equ	FogF	= 0
+;.equ	FogF	= 0
 .equ	IndF	= 1
 ;	Action flags
 .equ	LightStepF	= 0
@@ -56,26 +56,26 @@
 	DefOutPort High, D, 6
 
 	DefOutPort Lamps, D, 7
-	DefOutPort Fog,   B, 0
+;	DefOutPort Fog,   B, 0
 	DefOutPort Ind,   B, 5 ; 5 - on board, 1 - release
 #endif
 #ifdef _TN2313DEF_INC_
 	; - In ports ----------------------
-	DefInPort Low,   D, 3
-	DefInPort Flash, D, 2
-	DefInPort Head,  D, 0
-	DefInPort Park,  D, 1
-	DefInPort AT,    A, 0
-	DefInPort Ign,   A, 1
+	DefInPort Low,   D, 4
+	DefInPort Flash, D, 3
+	DefInPort Head,  A, 0
+	DefInPort Park,  D, 2
+	DefInPort AT,    A, 1
+	DefInPort Ign,   D, 1
 
 	; - Out ports ---------------------
-	DefOCR Low, OCR0A
-	DefOCR High, OCR0B
+	DefOCR Low, OCR0B
+	DefOCR High, OCR0A
 
-	DefOutPort Low,	  B, 2
-	DefOutPort High,  D, 5
+	DefOutPort Low,	  D, 5
+	DefOutPort High,  B, 2
 
-	DefOutPort Lamps, B, 1
-	DefOutPort Fog,   B, 0
-	DefOutPort Ind,   B, 3
+	DefOutPort Lamps, B, 0
+;	DefOutPort Fog,   B, 0
+	DefOutPort Ind,   B, 4
 #endif

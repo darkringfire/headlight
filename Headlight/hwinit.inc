@@ -11,7 +11,7 @@
 	SetOutPort LowOut
 	SetOutPort HighOut
 	SetOutPort LampsOut
-	SetOutPort FogOut
+;	SetOutPort FogOut
 	SetOutPort IndOut
 
         ; Timer0 setup

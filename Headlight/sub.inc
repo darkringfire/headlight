@@ -269,10 +269,10 @@ light_set:
 HighInd_on:
 	sbp	Ind
 Check_fog:
-	sbrc	R16, ParkF
-	sbp	Fog
-	sbrs	R16, ParkF
-	cbp	Fog
+;	sbrc	R16, ParkF
+;	sbp	Fog
+;	sbrs	R16, ParkF
+;	cbp	Fog
 
 	ret
 
