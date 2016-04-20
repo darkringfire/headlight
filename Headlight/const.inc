@@ -1,5 +1,5 @@
 ; - Constants ---------------------
-.equ    Freq										= 1 ; MHz
+.equ    Freq		= 1 ; MHz
 .equ    TimeOnMin	= 50 ; ms - time (Off -> Full On) if Delay = 1
 .equ    LightStep	= 4
 .equ    LightTimer	= Freq * 1000  * LightStep * TimeOnMin / 255
@@ -12,7 +12,6 @@
 	.equ	PWM_Prescale	= 0b010 ; 001 - /1, 010 - /8, 011 - /64, 100 - 256
 .endif
 ;---
-.warning "setup Relay ON time"
 .equ	LightDelayOn	= 10 ; ms
 ;---
 .equ	LightDelayOff	= 255 ; ms
