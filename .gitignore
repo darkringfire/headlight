@@ -1,4 +1,4 @@
 /.vs/
 Debug/
 Release/
-Headlight.componentinfo.xml
+*.componentinfo.xml
